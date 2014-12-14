@@ -16,14 +16,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Ambient temperature: -.-°" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bh-fP-auH">
-                                <rect key="frame" x="202" y="232" width="197" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Ambient temperature: -.-°" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bh-fP-auH">
+                                <rect key="frame" x="202" y="289" width="197" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="197" id="QI6-vR-X6S"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ozV-fv-chY">
-                                <rect key="frame" x="249" y="323" width="102" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ozV-fv-chY">
+                                <rect key="frame" x="249" y="468" width="102" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="lKF-sV-RD6"/>
                                     <constraint firstAttribute="width" constant="300" id="tqj-XZ-cLg"/>
@@ -41,6 +44,7 @@
                             <constraint firstAttribute="centerX" secondItem="3bh-fP-auH" secondAttribute="centerX" id="UYh-eB-wbM"/>
                             <constraint firstAttribute="centerY" relation="lessThanOrEqual" secondItem="3bh-fP-auH" secondAttribute="centerY" id="aDj-td-7am"/>
                             <constraint firstAttribute="centerY" relation="lessThanOrEqual" secondItem="ozV-fv-chY" secondAttribute="centerY" id="e5j-tK-HOR"/>
+                            <constraint firstItem="3bh-fP-auH" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="212" id="euG-zw-ISV"/>
                             <constraint firstItem="ozV-fv-chY" firstAttribute="top" secondItem="3bh-fP-auH" secondAttribute="bottom" constant="100" id="nqr-Nu-56k"/>
                             <constraint firstAttribute="centerX" secondItem="ozV-fv-chY" secondAttribute="centerX" id="sQU-h8-0Oy"/>
                         </constraints>
