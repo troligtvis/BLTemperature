@@ -11,12 +11,23 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var temperatureLabel: UILabel!
     
+    let network: NetworkCommunication! = NetworkCommunication()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        blDiscoverySharedInstance
+        
+        
     }
     
     @IBAction func sendButton(sender: AnyObject) {
+        if let temp = blDiscoverySharedInstance.temp{
+            
+            network.sendData(blDiscoverySharedInstance.arrayToString())
+            temperatureLabel.text = "Ambient temperature: \(temp)°"
+        }
         
     }
 
