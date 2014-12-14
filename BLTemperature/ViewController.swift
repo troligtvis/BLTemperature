@@ -9,10 +9,15 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var temperatureLabel: UILabel!
 
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    @IBAction func sendButton(sender: AnyObject) {
     }
 
     override func didReceiveMemoryWarning() {
