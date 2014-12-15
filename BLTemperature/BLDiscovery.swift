@@ -12,7 +12,7 @@ import CoreBluetooth
 let blDiscoverySharedInstance = BLDiscovery()
 
 protocol UpdateLabelDelegate{
-    
+    func test()
 }
 
 class BLDiscovery: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate{
@@ -24,6 +24,7 @@ class BLDiscovery: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate{
     var results: [String]! = [" Hej ", " test "]
     var pauseUpdate: Bool! = false
     
+    var viewController: ViewController!
     
     override init(){
         super.init()
@@ -34,21 +35,11 @@ class BLDiscovery: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate{
         centralManager = CBCentralManager(delegate: self, queue: centralQueue)
     }
     
-    /*func startCentralManager() {
-        println("Initializing central manager")
-        centralManager = CBCentralManager(delegate: self, queue: nil)
-    }*/
-    
     func startScanning(){
         println("Start scanning")
         centralManager.scanForPeripheralsWithServices(nil, options: nil)
     }
-    
-    /*func discoverDevices() {
-        println("discovering devices")
-        centralManager.scanForPeripheralsWithServices(nil, options: nil)
-    }*/
-    
+ 
     func centralManager(central: CBCentralManager!, didDiscoverPeripheral peripheral: CBPeripheral!, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber!) {
         println("Discovered \(peripheral.name)")
         println("identifier \(peripheral.identifier)")
@@ -71,14 +62,7 @@ class BLDiscovery: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate{
         println("Disconnected")
         
         self.peripheral = nil;
-        
-        
-        
-        
-        //startCentralManager()
-
-        
-        
+    
         // Validate peripheral information
         if ((peripheral == nil) || (peripheral.name == nil) || (peripheral.name == "")) {
             return
@@ -164,17 +148,17 @@ class BLDiscovery: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate{
         println("didWriteValueForCharacteristic \(characteristic.UUID) error = \(error)");
     }
     
-    var temp: Float! = 0
+    var str: String! = "something"
     
     func peripheral(peripheral: CBPeripheral!, didUpdateValueForCharacteristic characteristic: CBCharacteristic!, error: NSError!) {
         
         if !pauseUpdate.boolValue {
             
             // Temperature
-            temp = sensorTMP006.calcTAmb(characteristic.value)
+            var temp = sensorTMP006.calcTAmb(characteristic.value)
             println("TEMP: \(temp)")
             
-            var str = " \(temp) "
+            str = " \(temp) "
             results.append(str)
             
             

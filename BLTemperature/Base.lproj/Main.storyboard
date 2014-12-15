@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Ambient temperature: -.-°" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bh-fP-auH">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Ambient temperature: -.-°" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bh-fP-auH">
                                 <rect key="frame" x="202" y="289" width="197" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="IZk-DH-kl0"/>
@@ -25,6 +25,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="IZk-DH-kl0"/>
+                                    </mask>
+                                </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ozV-fv-chY">
                                 <rect key="frame" x="249" y="468" width="102" height="30"/>
@@ -39,9 +44,23 @@
                                     <action selector="sendButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="WmO-ZD-7Gp"/>
                                 </connections>
                             </button>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TWU-Td-9yd">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="BlueTOOTH" id="zp8-Vo-Vq7">
+                                        <barButtonItem key="leftBarButtonItem" title="Update" id="w5X-h3-Im9">
+                                            <connections>
+                                                <action selector="updateBtn:" destination="vXZ-lx-hvc" id="JPH-T2-sKk"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="3bh-fP-auH" secondAttribute="trailing" constant="10" id="GIL-L7-P6d"/>
+                            <constraint firstItem="3bh-fP-auH" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="10" id="JAS-Ec-vbs"/>
                             <constraint firstAttribute="centerX" secondItem="3bh-fP-auH" secondAttribute="centerX" id="UYh-eB-wbM"/>
                             <constraint firstAttribute="centerY" relation="lessThanOrEqual" secondItem="3bh-fP-auH" secondAttribute="centerY" id="aDj-td-7am"/>
                             <constraint firstAttribute="centerY" relation="lessThanOrEqual" secondItem="ozV-fv-chY" secondAttribute="centerY" id="e5j-tK-HOR"/>

@@ -8,29 +8,29 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController{
     @IBOutlet weak var temperatureLabel: UILabel!
     
     let network: NetworkCommunication! = NetworkCommunication()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        blDiscoverySharedInstance
-        
-        
     }
     
     @IBAction func sendButton(sender: AnyObject) {
-        if let temp = blDiscoverySharedInstance.temp{
-            
+        if let temp = blDiscoverySharedInstance.str{
             network.sendData(blDiscoverySharedInstance.arrayToString())
+        }
+    }
+    @IBAction func updateBtn(sender: AnyObject) {
+        if let temp = blDiscoverySharedInstance.str{
             temperatureLabel.text = "Ambient temperature: \(temp)°"
         }
-        
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
