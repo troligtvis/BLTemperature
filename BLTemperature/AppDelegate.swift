@@ -20,8 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         var viewController = window!.rootViewController as ViewController
         blDiscoverySharedInstance
-        //blDiscoverySharedInstance.viewController = viewController
-        
         
         return true
     }
