@@ -159,7 +159,10 @@ class BLDiscovery: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate{
             println("TEMP: \(temp)")
             
             str = " \(temp) "
-            results.append(str)
+            
+            var dateStr = "\(NSDate())"
+            results.append("\(dateStr),")
+            results.append("\(str)\n")
             
             
             

@@ -22,8 +22,8 @@ class ViewController: UIViewController{
     @IBAction func sendButton(sender: AnyObject) {
         if let temp = blDiscoverySharedInstance.str{
 
-            var dateStr = "<>\(NSDate())"
-            blDiscoverySharedInstance.results.append(dateStr)
+            
+            //blDiscoverySharedInstance.results.append(dateStr)
             network.saveData(blDiscoverySharedInstance.arrayToString())
             network.sendData()
         }
