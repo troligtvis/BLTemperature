@@ -21,7 +21,7 @@ class BLDiscovery: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate{
     var peripheral:CBPeripheral!
     var isBluetoothReady = false
     
-    var results: [String]! = [" Hej ", " test "]
+    var results: [String]! = []
     var pauseUpdate: Bool! = false
     
     var viewController: ViewController!
@@ -160,8 +160,15 @@ class BLDiscovery: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate{
             
             str = " \(temp) "
             
-            var dateStr = "\(NSDate())"
-            results.append("\(dateStr),")
+            
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd H:m:s"
+            
+            let date = dateFormatter.stringFromDate(NSDate()) as String!
+            
+            
+            //var dateStr = "\(NSDate())"
+            results.append("\(date),")
             results.append("\(str)\n")
             
             
