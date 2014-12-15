@@ -21,15 +21,19 @@ class ViewController: UIViewController{
     
     @IBAction func sendButton(sender: AnyObject) {
         if let temp = blDiscoverySharedInstance.str{
-            network.sendData(blDiscoverySharedInstance.arrayToString())
+
+            var dateStr = "<>\(NSDate())"
+            blDiscoverySharedInstance.results.append(dateStr)
+            network.saveData(blDiscoverySharedInstance.arrayToString())
+            network.sendData()
         }
     }
+    
     @IBAction func updateBtn(sender: AnyObject) {
         if let temp = blDiscoverySharedInstance.str{
             temperatureLabel.text = "Ambient temperature: \(temp)°"
         }
     }
-
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

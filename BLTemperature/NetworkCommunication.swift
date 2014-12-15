@@ -86,12 +86,28 @@ class NetworkCommunication: NSObject, NSStreamDelegate{
         return ""
     }
     
-    func sendData(stringWithInfo: String){
-        var response = "\(stringWithInfo)\r\n"
+    func sendData(){
+        
+        if let dirs = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as?  [String] {
+            
+            
+            let path = dirs[0].stringByAppendingPathComponent( "data.txt")
+            
+            if let text = String(contentsOfFile: path, encoding: NSUTF8StringEncoding, error: nil) {
+                var data = NSData(data: text.dataUsingEncoding(NSASCIIStringEncoding)!)
+            
+                outputStream?.write(UnsafePointer<UInt8>(data.bytes) , maxLength: data.length)
+                blDiscoverySharedInstance.results.removeAll()
+            }
+        }
+        
+        /*var response = "\(stringWithInfo)\r\n"
         
         var data = NSData(data: response.dataUsingEncoding(NSASCIIStringEncoding)!)
         println("response: \(response) data.length: \(data.length)")
         
         outputStream?.write(UnsafePointer<UInt8>(data.bytes) , maxLength: data.length)
+        blDiscoverySharedInstance.results.removeAll()
+        */
     }
 }
