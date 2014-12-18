@@ -17,8 +17,6 @@ class GraphViewController: UIViewController, UpdateTemperatureDelegate {
     var temperatures: [Float]! = []
     var series: ChartSeries!
     
-    
-    
     override func viewDidLoad() {
         
         chart.minY = 20
@@ -36,11 +34,7 @@ class GraphViewController: UIViewController, UpdateTemperatureDelegate {
         
         discovery.delegate = self
     }
-    
-    override func viewDidDisappear(animated: Bool) {
-        
-    }
-    
+
     func updateTemperature(temperature: Float) {
         dispatch_async(dispatch_get_main_queue(), {
             self.chart.removeSeries()

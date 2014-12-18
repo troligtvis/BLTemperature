@@ -10,14 +10,19 @@ import Foundation
 
 class NetworkCommunication: NSObject, NSStreamDelegate{
     
-    private let serverAddress: CFString = "178.78.213.33"
-    private let serverPort: UInt32 = 6667
+    private var serverAddress: CFString!
+    private var serverPort: UInt32!
     
     private var inputStream: NSInputStream!
     var outputStream: NSOutputStream!
     
-    override init(){
+    init(address: String, port: Int){
         super.init()
+        
+        serverAddress = address as CFString
+        serverPort = UInt32(port)
+        
+        println("address:\(serverAddress) port:\(serverPort)")
         
         var readStream: Unmanaged<CFReadStream>?
         var writeStream: Unmanaged<CFWriteStream>?
@@ -35,6 +40,8 @@ class NetworkCommunication: NSObject, NSStreamDelegate{
         
         //self.inputStream.open()
         self.outputStream.open()
+        
+        println("Done setup socket")
     }
     
     func stream(aStream: NSStream, handleEvent eventCode: NSStreamEvent) {
@@ -67,10 +74,13 @@ class NetworkCommunication: NSObject, NSStreamDelegate{
     }
     
     func saveData(stringWithInfo: String){
+        println("saveData")
         if let dirs = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as?  [String] {
             let path = dirs[0].stringByAppendingPathComponent( "data.txt")
             let text = stringWithInfo
             text.writeToFile(path, atomically: true, encoding: NSUTF8StringEncoding, error: nil)
+        } else {
+            println("saveData error")
         }
     }
     
@@ -87,7 +97,7 @@ class NetworkCommunication: NSObject, NSStreamDelegate{
     }
     
     func sendData(){
-        
+        println("sendData")
         if let dirs = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as?  [String] {
             
             let path = dirs[0].stringByAppendingPathComponent( "data.txt")
@@ -98,16 +108,11 @@ class NetworkCommunication: NSObject, NSStreamDelegate{
             
                 outputStream?.write(UnsafePointer<UInt8>(data.bytes) , maxLength: data.length)
                 blDiscoverySharedInstance.results.removeAll()
+            } else {
+                println("No file?")
             }
+        } else {
+            println("Empty")
         }
-        
-        /*var response = "\(stringWithInfo)\r\n"
-        
-        var data = NSData(data: response.dataUsingEncoding(NSASCIIStringEncoding)!)
-        println("response: \(response) data.length: \(data.length)")
-        
-        outputStream?.write(UnsafePointer<UInt8>(data.bytes) , maxLength: data.length)
-        blDiscoverySharedInstance.results.removeAll()
-        */
     }
 }

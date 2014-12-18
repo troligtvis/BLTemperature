@@ -20,18 +20,16 @@ class BLDiscovery: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate{
     
     var centralManager:CBCentralManager!
     var peripheral:CBPeripheral!
-    var isBluetoothReady = false
     
     var results: [String]! = []
     var pauseUpdate: Bool! = false
     
     var delegate: UpdateTemperatureDelegate?
     
-    
     override init(){
         super.init()
         
-        let centralQueue = dispatch_queue_create("com.gozer", DISPATCH_QUEUE_SERIAL)
+        let centralQueue = dispatch_queue_create("nu.whiletrue", DISPATCH_QUEUE_SERIAL)
         
         println("Initializing central manager")
         centralManager = CBCentralManager(delegate: self, queue: centralQueue)
@@ -75,19 +73,14 @@ class BLDiscovery: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate{
             // Retain the peripheral before trying to connect
             self.peripheral = peripheral
             
-            // Reset service
-            //self.bleService = nil
-            
             // Connect to peripheral
             central.connectPeripheral(peripheral, options: nil)
         }
-
-        
     }
     
     func centralManagerDidUpdateState(central: CBCentralManager!) {
-        println("checking state")
-        isBluetoothReady = false;
+        println("centralManagerDidUpdateState")
+        
         switch (central.state) {
         case .PoweredOff:
             println("CoreBluetooth BLE hardware is powered off")
@@ -113,21 +106,20 @@ class BLDiscovery: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate{
     
     func peripheral(peripheral: CBPeripheral!, didDiscoverServices error: NSError!) {
         
-        println("Hello from deligate \(peripheral.name)");
+        //println("Hello from deligate \(peripheral.name)");
         
         for aService in peripheral.services{
-            println("Service UUID: \((aService as CBService).UUID )")
+            //println("Service UUID: \((aService as CBService).UUID )")
             peripheral.discoverCharacteristics(nil, forService: aService as CBService)
         }
     }
     
     func peripheral(peripheral: CBPeripheral!, didDiscoverCharacteristicsForService service: CBService!, error: NSError!) {
         
-        println("Found Characteristics For Service: \(service.UUID)")
+        //println("Found Characteristics For Service: \(service.UUID)")
         for aChar in service.characteristics
         {
-            
-            println("Characteristics UUID: \((aChar as CBCharacteristic).UUID)")
+            //println("Characteristics UUID: \((aChar as CBCharacteristic).UUID)")
             if((aChar as CBCharacteristic).UUID.isEqual(CBUUID(string: "F000AA11-0451-4000-B000-000000000000"))){
                 
                 // Ambient Temperature
@@ -137,8 +129,8 @@ class BLDiscovery: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate{
                 
                 var random = NSInteger(1)
                 var data = NSData(bytes: &random, length: 1)
-                BLEUtilitySwift.writeCharacteristic(self.peripheral, sUUID: sUUID, cUUID: cUUID, data: data)
                 
+                BLEUtilitySwift.writeCharacteristic(self.peripheral, sUUID: sUUID, cUUID: cUUID, data: data)
                 BLEUtilitySwift.setNotificationForCharacteristic(self.peripheral, sUUID: sUUID, cUUID: dUUID, enable: true)
                 
                 println("Done with setting up temperature sensor")
@@ -169,7 +161,6 @@ class BLDiscovery: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate{
             let date = dateFormatter.stringFromDate(NSDate()) as String!
             
             self.delegate?.updateTemperature(temp)
-            
             results.append("\(date),")
             results.append("\(str)\n")
             

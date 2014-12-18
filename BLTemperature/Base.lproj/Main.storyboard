@@ -33,12 +33,12 @@
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ozV-fv-chY">
-                                <rect key="frame" x="249" y="468" width="102" height="30"/>
+                                <rect key="frame" x="282" y="468" width="36" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="lKF-sV-RD6"/>
                                     <constraint firstAttribute="width" constant="300" id="tqj-XZ-cLg"/>
                                 </constraints>
-                                <state key="normal" title="Paus and send">
+                                <state key="normal" title="Send">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -71,6 +71,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="btnLabel" destination="ozV-fv-chY" id="KNB-5G-Neq"/>
                         <outlet property="temperatureLabel" destination="3bh-fP-auH" id="qXK-h8-lBU"/>
                     </connections>
                 </viewController>
