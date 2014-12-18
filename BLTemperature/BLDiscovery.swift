@@ -7,12 +7,13 @@
 //
 
 import Foundation
+import UIKit
 import CoreBluetooth
 
 let blDiscoverySharedInstance = BLDiscovery()
 
-protocol UpdateLabelDelegate{
-    func test()
+protocol UpdateTemperatureDelegate{
+    func updateTemperature(temperature: Float)
 }
 
 class BLDiscovery: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate{
@@ -24,7 +25,8 @@ class BLDiscovery: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate{
     var results: [String]! = []
     var pauseUpdate: Bool! = false
     
-    var viewController: ViewController!
+    var delegate: UpdateTemperatureDelegate?
+    
     
     override init(){
         super.init()
@@ -34,7 +36,7 @@ class BLDiscovery: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate{
         println("Initializing central manager")
         centralManager = CBCentralManager(delegate: self, queue: centralQueue)
     }
-    
+
     func startScanning(){
         println("Start scanning")
         centralManager.scanForPeripheralsWithServices(nil, options: nil)
@@ -166,15 +168,11 @@ class BLDiscovery: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate{
             
             let date = dateFormatter.stringFromDate(NSDate()) as String!
             
+            self.delegate?.updateTemperature(temp)
             
-            //var dateStr = "\(NSDate())"
             results.append("\(date),")
             results.append("\(str)\n")
             
-            
-            
-            // FIX THIS SOMEHOW <--------
-            //ViewController.setTemperatureLabel("Ambient temperature: \(temp)°")
         }
     }
     
@@ -190,5 +188,12 @@ class BLDiscovery: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate{
             str = str + String(results[i])
         }
         return str
-    } 
+    }
+    
+    
+    
+    
+    
+    
+
 }

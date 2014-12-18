@@ -8,31 +8,36 @@
 
 import UIKit
 
-class ViewController: UIViewController{
+class ViewController: UIViewController, UpdateTemperatureDelegate{
     @IBOutlet weak var temperatureLabel: UILabel!
+    
+    var discovery: BLDiscovery!
     
     let network: NetworkCommunication! = NetworkCommunication()
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        discovery = BLDiscovery()
+        discovery.delegate = self
+        
     }
     
     @IBAction func sendButton(sender: AnyObject) {
-        if let temp = blDiscoverySharedInstance.str{
-
-            
-            //blDiscoverySharedInstance.results.append(dateStr)
-            network.saveData(blDiscoverySharedInstance.arrayToString())
+        
+        
+        
+        
+        if let temp = discovery.str{
+            network.saveData(discovery.arrayToString())
             network.sendData()
         }
     }
     
-    @IBAction func updateBtn(sender: AnyObject) {
-        if let temp = blDiscoverySharedInstance.str{
-            temperatureLabel.text = "Ambient temperature: \(temp)°"
-        }
+    func updateTemperature(temperature: Float) {
+        dispatch_async(dispatch_get_main_queue(), {
+            self.temperatureLabel.text = "Ambient temperature:\(temperature)°"
+        })
     }
     
     override func didReceiveMemoryWarning() {
@@ -40,6 +45,22 @@ class ViewController: UIViewController{
         // Dispose of any resources that can be recreated.
     }
 
-
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "toGraph" {
+        
+            if let gcv = segue.destinationViewController as? GraphViewController {
+                println("Kommer in?")
+                gcv.discovery = discovery
+            }
+        }
+        
+    }
+    
+    @IBAction func unwindToThisViewController(segue: UIStoryboardSegue) {
+        if let gvc = segue.sourceViewController as? GraphViewController {
+            discovery.delegate = self
+        }
+    }
 }
 

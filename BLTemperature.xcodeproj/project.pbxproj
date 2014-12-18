@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B373F631A3F2539008A7018 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B373F621A3F2539008A7018 /* GraphViewController.swift */; };
 		2B533BB21A3D107E00D7B89D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B533BB11A3D107E00D7B89D /* AppDelegate.swift */; };
 		2B533BB41A3D107E00D7B89D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B533BB31A3D107E00D7B89D /* ViewController.swift */; };
 		2B533BB71A3D107E00D7B89D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B533BB51A3D107E00D7B89D /* Main.storyboard */; };
@@ -18,6 +19,9 @@
 		2B533BDE1A3D22AC00D7B89D /* BLDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B533BDD1A3D22AC00D7B89D /* BLDiscovery.swift */; };
 		2B533BE01A3D22C000D7B89D /* BLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B533BDF1A3D22C000D7B89D /* BLService.swift */; };
 		2B533BE31A3D243100D7B89D /* Sensors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B533BE21A3D243100D7B89D /* Sensors.m */; };
+		2BF517701A42CB8700BD9BC9 /* Chart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF5176D1A42CB8700BD9BC9 /* Chart.swift */; };
+		2BF517711A42CB8700BD9BC9 /* ChartColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF5176E1A42CB8700BD9BC9 /* ChartColors.swift */; };
+		2BF517721A42CB8700BD9BC9 /* ChartSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF5176F1A42CB8700BD9BC9 /* ChartSeries.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B373F621A3F2539008A7018 /* GraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
 		2B533BAC1A3D107E00D7B89D /* BLTemperature.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLTemperature.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B533BB01A3D107E00D7B89D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B533BB11A3D107E00D7B89D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -48,6 +53,9 @@
 		2B533BE11A3D243100D7B89D /* Sensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sensors.h; sourceTree = "<group>"; };
 		2B533BE21A3D243100D7B89D /* Sensors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sensors.m; sourceTree = "<group>"; };
 		2B533BE51A3D248C00D7B89D /* BLTemperature-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BLTemperature-Bridging-Header.h"; sourceTree = "<group>"; };
+		2BF5176D1A42CB8700BD9BC9 /* Chart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chart.swift; sourceTree = "<group>"; };
+		2BF5176E1A42CB8700BD9BC9 /* ChartColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartColors.swift; sourceTree = "<group>"; };
+		2BF5176F1A42CB8700BD9BC9 /* ChartSeries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartSeries.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,9 +103,11 @@
 				2B533BB81A3D107E00D7B89D /* Images.xcassets */,
 				2B533BBA1A3D107E00D7B89D /* LaunchScreen.xib */,
 				2B533BAF1A3D107E00D7B89D /* Supporting Files */,
+				2BF5176C1A42CB8700BD9BC9 /* Chart */,
 				2B533BD31A3D1D8000D7B89D /* SensorTag */,
 				2B533BD91A3D21F800D7B89D /* NetworkCommunication.swift */,
 				2B533BDD1A3D22AC00D7B89D /* BLDiscovery.swift */,
+				2B373F621A3F2539008A7018 /* GraphViewController.swift */,
 				2B533BDF1A3D22C000D7B89D /* BLService.swift */,
 			);
 			path = BLTemperature;
@@ -137,6 +147,16 @@
 				2B533BE51A3D248C00D7B89D /* BLTemperature-Bridging-Header.h */,
 			);
 			name = SensorTag;
+			sourceTree = "<group>";
+		};
+		2BF5176C1A42CB8700BD9BC9 /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				2BF5176D1A42CB8700BD9BC9 /* Chart.swift */,
+				2BF5176E1A42CB8700BD9BC9 /* ChartColors.swift */,
+				2BF5176F1A42CB8700BD9BC9 /* ChartSeries.swift */,
+			);
+			path = Chart;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,8 +262,12 @@
 				2B533BDA1A3D21F800D7B89D /* NetworkCommunication.swift in Sources */,
 				2B533BDE1A3D22AC00D7B89D /* BLDiscovery.swift in Sources */,
 				2B533BB41A3D107E00D7B89D /* ViewController.swift in Sources */,
+				2BF517721A42CB8700BD9BC9 /* ChartSeries.swift in Sources */,
 				2B533BE01A3D22C000D7B89D /* BLService.swift in Sources */,
+				2BF517711A42CB8700BD9BC9 /* ChartColors.swift in Sources */,
 				2B533BE31A3D243100D7B89D /* Sensors.m in Sources */,
+				2BF517701A42CB8700BD9BC9 /* Chart.swift in Sources */,
+				2B373F631A3F2539008A7018 /* GraphViewController.swift in Sources */,
 				2B533BB21A3D107E00D7B89D /* AppDelegate.swift in Sources */,
 				2B533BD21A3D1BD200D7B89D /* BLEUtility.swift in Sources */,
 			);
@@ -442,6 +466,7 @@
 				2B533BCD1A3D107F00D7B89D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2B533BCE1A3D107F00D7B89D /* Build configuration list for PBXNativeTarget "BLTemperatureTests" */ = {
 			isa = XCConfigurationList;
@@ -450,6 +475,7 @@
 				2B533BD01A3D107F00D7B89D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
